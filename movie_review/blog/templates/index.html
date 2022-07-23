@@ -1,0 +1,16 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+
+    {%for con in content%}
+
+    <h4>{{con.title}}</h4>
+    <img src="{{con.image.url}}" width="20px" height="20px"><br />
+    <p>{{con.description | safe | truncatechars:20}}</p>
+    <a href="{% url 'blogdetails' con.id %}">read more</a>
+
+    {%endfor%}
+
+{% endblock content %}
+

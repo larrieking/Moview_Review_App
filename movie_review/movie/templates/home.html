@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+
+{%block title%}<title>home</title>{%endblock title%}
+{% block content %}
+
+   
+
+      <h3>Join our mailing list:</h3>
+      <form action="{% url 'signup' %}" method="get">
+        <div class="mb-3">
+          <label for="search" class="form-label">Email Address</label>
+          <input
+            type="email"
+            class="form-control"
+            id="search"
+            aria-describedby="emailHelp"
+            name="mail"
+          />
+        </div>
+
+        <button type="search" class="btn btn-primary">Submit</button>
+      </form>
+      <div class="row">
+        {% for movie in movies %}
+        <div class="col-sm-2">
+          <div class="card">
+            <img src="{{movie.image.url}}" class="card-img-top" alt="..." />
+
+            <div class="card-body">
+
+                <a href="{% url 'details' movie.id%}"><h5 class="card-title">{{movie.title}}</h5></a>
+              
+              <p class="card-text">{{movie.description}}</p>
+              {% if movie.url %}           <a
+                href="{{ movie.url }}"
+                class="btn btn-primary"
+                >Movie Link</a
+              >
+                      {% endif %}
+            </div>
+          </div>
+        </div>
+
+        {% endfor %}
+      </div>
+   {% endblock content %}
+
+    
